@@ -20,7 +20,7 @@ async function loadTours() {
 
         if (tour.city === null) {
             container.innerHTML += `
-            <div class="bg-white rounded-xl shadow-md shadow-white relative h-full">
+            <div class="bg-white rounded-xl shadow-md shadow-white relative h-full" id="tour">
                 <div class="text-xl bg-yellow-500 px-6 py-3 rounded-bl-xl rounded-tr-xl absolute top-0 right-0 z-10">
                     <p class=" font-bold text-xl">${tour.rating}</p>
                 </div>
@@ -48,14 +48,16 @@ async function loadTours() {
                         <p class="font-bold text-xl text-cyan-600">от ${
                             tour.price
                         } ₽</p>
-                        <button class="btn-primary">Забронировать</button>
+                        <button id="bookTour-${
+                            tour.id
+                        }" class="btn-primary">Забронировать</button>
                     </div>
                 </div>
             </div>
         `
         } else {
             container.innerHTML += `
-            <div class="bg-white rounded-xl shadow-md shadow-white relative h-full">
+            <div class="bg-white rounded-xl shadow-md shadow-white relative h-full" id="tour">
                 <div class="text-xl bg-yellow-500 px-6 py-3 rounded-bl-xl rounded-tr-xl absolute top-0 right-0 z-10">
                     <p class=" font-bold text-xl">${tour.rating}</p>
                 </div>
@@ -83,12 +85,26 @@ async function loadTours() {
                         <p class="font-bold text-xl text-cyan-600">от ${
                             tour.price
                         } ₽</p>
-                        <button class="btn-primary">Забронировать</button>
+                        <button id="bookTour-${
+                            tour.id
+                        }" class="btn-primary">Забронировать</button>
                     </div>
                 </div>
             </div>
         `
         }
     })
+
+    tours.forEach((tour) => {
+        document
+            .getElementById(`bookTour-${tour.id}`)
+            .addEventListener("click", () => {
+                bookTour(tour.id)
+            })
+    })
 }
 loadTours()
+//открыть модальное окно при клике на кнопку "добавить книгу"
+function bookTour() {
+    document.getElementById("openModal").style.display = "flex"
+}
