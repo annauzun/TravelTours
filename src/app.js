@@ -104,7 +104,21 @@ async function loadTours() {
     })
 }
 loadTours()
-//открыть модальное окно при клике на кнопку "добавить книгу"
+
 function bookTour() {
     document.getElementById("openModal").style.display = "flex"
 }
+
+const closeModalBtn = document.getElementById("closeModal")
+closeModalBtn.addEventListener("click", closeModal)
+
+function closeModal() {
+    document.getElementById("openModal").style.display = "none"
+}
+
+/*
+function getValue() {
+    document.getElementById("country").value = tour.country
+    document.getElementById("city").value = tour.city
+    document.getElementById("hotelName").value = tour.hotelName
+}*/
