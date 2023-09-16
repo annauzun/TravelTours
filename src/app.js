@@ -28,8 +28,8 @@ async function loadTours() {
                     tour.image
                 }" class="h-[300px] md:h-[260px] lg:h-[230px] w-full rounded-t-xl p-1 bg-contain"/>
 
-                <div class="flex flex-wrap flex-col justify-between p-3 h-[265px]">
-                    <div class="font-bold text-xl text-gray-600 uppercase h-1/4 mb-7" >${
+                <div class="flex flex-wrap flex-col justify-between px-4 pb-3 h-[200px] md:h-[235px] lg:h-[265px]">
+                    <div class="font-bold text-xl text-gray-600 uppercase lg:h-1/4 lg:mb-7" >${
                         tour.hotelName
                     }</div>
                     <div class="font-bold text-gray-400 mb-2">${
@@ -45,14 +45,13 @@ async function loadTours() {
                     <div class="font-['Manrope']">${durationDays} дней / ${durationNights} ночей</div>
 
                     <div class="flex justify-between items-center w-full">
-                        <p class="font-bold text-2xl text-cyan-600">от ${
+                        <p class="font-bold text-xl text-cyan-600">от ${
                             tour.price
                         } ₽</p>
-                        <button class="btn-primary">Подробнее</button>
+                        <button class="btn-primary">Забронировать</button>
                     </div>
                 </div>
             </div>
-
         `
         } else {
             container.innerHTML += `
@@ -64,8 +63,8 @@ async function loadTours() {
                     tour.image
                 }" class="h-[300px] md:h-[260px] lg:h-[230px] w-full rounded-t-xl p-1 bg-contain"/>
 
-                <div class="flex flex-wrap flex-col justify-between px-4 pb-3 h-[265px]">
-                    <div class="font-bold text-xl text-gray-600 uppercase h-1/4 mb-7" >${
+                <div class="flex flex-wrap flex-col justify-between px-4 pb-3 h-[200px] md:h-[235px] lg:h-[265px]">
+                    <div class="font-bold text-xl text-gray-600 uppercase lg:h-1/4 lg:mb-7" >${
                         tour.hotelName
                     }</div>
                     <div class="font-bold text-gray-400 mb-2">${
@@ -81,14 +80,13 @@ async function loadTours() {
                     <div class="font-['Manrope']">${durationDays} дней / ${durationNights} ночей</div>
 
                     <div class="flex justify-between items-center w-full">
-                        <p class="font-bold text-2xl text-cyan-600">от ${
+                        <p class="font-bold text-xl text-cyan-600">от ${
                             tour.price
                         } ₽</p>
-                        <button class="btn-primary">Подробнее</button>
+                        <button class="btn-primary">Забронировать</button>
                     </div>
                 </div>
             </div>
-
         `
         }
     })
