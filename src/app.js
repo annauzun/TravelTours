@@ -8,6 +8,8 @@ async function loadTours() {
     )
     const tours = await response.json()
 
+    /*console.log(tours)*/
+
     const container = document.getElementById("container")
     container.innerHTML = ""
 
@@ -45,7 +47,7 @@ async function loadTours() {
                     <div class="font-['Manrope']">${durationDays} дней / ${durationNights} ночей</div>
 
                     <div class="flex justify-between items-center w-full">
-                        <p class="font-bold text-xl text-cyan-600">от ${
+                        <p class="font-bold text-xl text-cyan-600">${
                             tour.price
                         } ₽</p>
                         <button id="bookTour-${
@@ -82,7 +84,7 @@ async function loadTours() {
                     <div class="font-['Manrope']">${durationDays} дней / ${durationNights} ночей</div>
 
                     <div class="flex justify-between items-center w-full">
-                        <p class="font-bold text-xl text-cyan-600">от ${
+                        <p class="font-bold text-xl text-cyan-600">${
                             tour.price
                         } ₽</p>
                         <button id="bookTour-${
@@ -102,23 +104,71 @@ async function loadTours() {
                 bookTour(tour.id)
             })
     })
+
+    /*открываем модальное окно*/
+    let currentId
+    function bookTour(id) {
+        currentId = id
+        document.getElementById("openModal").style.display = "flex"
+
+        let tour = tours.find((u) => {
+            return u.id === id
+        })
+
+        getValue(tour)
+    }
+
+    /*получаем данные из карточки тура*/
+    function getValue(tour) {
+        const startDateFmtd = format(new Date(tour.startTime), "dd MMMM yyyy", {
+            locale: ru,
+        })
+        const endDateFmtd = format(new Date(tour.endTime), "dd MMMM yyyy", {
+            locale: ru,
+        })
+
+        document.getElementById("country").value = tour.country
+        document.getElementById("city").value = tour.city
+        document.getElementById("hotelName").value = tour.hotelName
+        document.getElementById("startTime").value = startDateFmtd
+        document.getElementById("endTime").value = endDateFmtd
+    }
+
+    /*очищаем форму и закрываем модальное окно*/
+    function clearForm() {
+        document.getElementById("customerName").value = ""
+        document.getElementById("phone").value = ""
+        document.getElementById("email").value = ""
+        document.getElementById("description").value = ""
+    }
+
+    function closeModal() {
+        document.getElementById("openModal").style.display = "none"
+        clearForm()
+    }
+
+    const closeModalBtn = document.getElementById("closeModal")
+    closeModalBtn.addEventListener("click", closeModal)
+
+    
 }
+
 loadTours()
 
-function bookTour() {
-    document.getElementById("openModal").style.display = "flex"
+
+
+
+const params = {
+    customerName: document.getElementById("customerName").value,
+    phone: document.getElementById("phone").value,
+    email: document.getElementById("email").value,  
+    description: document.getElementById("description").value                    
 }
+console.log(params)
 
-const closeModalBtn = document.getElementById("closeModal")
-closeModalBtn.addEventListener("click", closeModal)
-
-function closeModal() {
-    document.getElementById("openModal").style.display = "none"
-}
-
-/*
-function getValue() {
-    document.getElementById("country").value = tour.country
-    document.getElementById("city").value = tour.city
-    document.getElementById("hotelName").value = tour.hotelName
-}*/
+/*const url = "https://www.bit-by-bit.ru/api/student-projects/tours/[id]"
+let response = await fetch(url, {
+  method: "POST",
+  body: JSON.stringify(params)
+})
+let data = await response.json()*/
