@@ -27,16 +27,10 @@
                                 Данные выбранного тура
                             </p>
                             <br />
-                            <p
-                                id="new-book-error"
-                                class="text-red-600 text-xl text-center hidden"
-                            >
-                                Заполните все поля!
-                            </p>
 
                             <div>
                                 <p class="text-lg mt-2">Страна тура</p>
-                                <input class="input" id="country" />
+                                <input class="input" id="country" type="text" />
                             </div>
                             <div>
                                 <p class="text-lg mt-2">Город тура</p>
@@ -63,12 +57,12 @@
                                 Пожалуйста, введите Ваши данные для бронирования
                             </p>
                             <br />
-                            <p
-                                id="new-book-error"
+                            <div
+                                id="request-error"
                                 class="text-red-600 text-xl text-center hidden"
                             >
                                 Заполните все поля!
-                            </p>
+                            </div>
 
                             <div>
                                 <p class="text-lg mt-2">Фамилия Имя</p>
@@ -96,18 +90,10 @@
                             <br />
 
                             <div class="flex gap-4">
-                                <button
-                                    type="submit"
-                                    id="sendRequest"
-                                    class="btn-primary"
-                                >
+                                <button id="sendRequest" class="btn-primary">
                                     Отправить
                                 </button>
-                                <button
-                                    type="reset"
-                                    id="closeModal"
-                                    class="btn-primary"
-                                >
+                                <button id="closeModal" class="btn-primary">
                                     Закрыть
                                 </button>
                             </div>
