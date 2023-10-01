@@ -25,11 +25,11 @@ function render(tours) {
         )
         const durationNights = Math.round(durationDays - 1)
 
-        if (tour.city === null) {
+        /*if (tour.city === null) {
             destination = `${tour.country}`
         } else {
             destination = `${tour.country}, ${tour.city}`
-        }
+        }*/
 
         container.innerHTML += `
             <div class="bg-white rounded-xl shadow-md shadow-white relative h-full" id="tour">
