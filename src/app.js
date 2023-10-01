@@ -25,9 +25,9 @@ function render(tours) {
         )
         const durationNights = Math.round(durationDays - 1)
 
-        /*if (tour.city === null) {
+        if (tour.city === null) {
             destination = `${tour.country}`
-        } else {
+        } /*else {
             destination = `${tour.country}, ${tour.city}`
         }*/
 
