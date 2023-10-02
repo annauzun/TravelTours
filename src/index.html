@@ -102,18 +102,70 @@
                 </div>
 
                 <div class="max-w-6xl mx-auto py-16 px-12 lg:px-8">
-                    <div class="flex justify-end gap-2">
-                        <button class="btn-primary">Избранное</button>
-                        <button class="btn-primary">Подобрать тур</button>
-                    </div>
+                    <button class="btn-primary">Избранное</button>
 
                     <div class="text-center mt-6">
                         <h1 class="text-4xl font-bold text-gray-800">
                             Лучшие предложения для отдыха
                         </h1>
-                        <p class="text-gray-600 text-2xl mt-4">
+                        <p class="text-gray-600 text-2xl my-4">
                             Популярные направления
                         </p>
+
+                        <div
+                            class="w-full flex justify-between bg-green-50/50 rounded-md p-3"
+                        >
+                            <div class="select-field">
+                                <label class="label" for="country"
+                                    >Страна:</label
+                                >
+
+                                <select
+                                    class="rounded-md mb-1 mx-1"
+                                    type="text"
+                                    id="country"
+                                    name="country"
+                                >
+                                    <option value="все">Все страны</option>
+                                    <option value="Тайланд">Тайланд</option>
+                                    <option value="Египет">Египет</option>
+                                    <option value="Кипр">Кипр</option>
+                                    <option value="Мальдивы">Мальдивы</option>
+                                    <option value="Индонезия">Индонезия</option>
+                                    <option value="Мексика">Мексика</option>
+                                    <option value="Танзания">Танзания</option>
+                                </select>
+                            </div>
+                            <div class="select-field">
+                                <label class="label" for="duration"
+                                    >Дата начала тура:</label
+                                >
+                                <input
+                                    type="date"
+                                    class="rounded-md mb-1 mx-1"
+                                />
+                            </div>
+                            <div class="select-field">
+                                <label class="label" for="price"
+                                    >Стоимость:</label
+                                >
+                                <div class="flex justify-between px-1">
+                                    <div class="text-sm">0 ₽</div>
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="600000"
+                                        step="1000"
+                                        value="20000"
+                                        class="w-1/2"
+                                    />
+                                    <div class="text-sm">600 000 ₽</div>
+                                </div>
+                            </div>
+                            <button class="btn-primary w-1/4">
+                                Подобрать тур
+                            </button>
+                        </div>
                     </div>
 
                     <div

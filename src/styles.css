@@ -10,6 +10,14 @@
     @apply w-full h-8 mt-1 border border-solid border-gray-600 rounded-md pl-1;
 }
 
+.select-field {
+    @apply w-1/4 flex flex-col rounded-md bg-sky-300/25 mr-3;
+}
+
+.label {
+    @apply text-left text-sm pl-3 text-gray-500;
+}
+
 * {
     box-sizing: border-box;
 }
