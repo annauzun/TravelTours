@@ -2,8 +2,9 @@ import { format } from "date-fns"
 import { id, ru } from "date-fns/locale"
 import { differenceInDays } from "date-fns"
 
-let allTours
-
+let allTours = []
+let favoriteTours = []
+let currentId
 async function loadTours() {
     const response = await fetch(
         "https://www.bit-by-bit.ru/api/student-projects/tours"
@@ -16,7 +17,7 @@ async function loadTours() {
 /*allTours.filter(t => t.country === "Мальдивы")*/
 
 function render(tours) {
-    const container = document.getElementById("container")
+    let container = document.getElementById("container")
 
     container.innerHTML = ""
 
@@ -41,15 +42,20 @@ function render(tours) {
                 <img src="${
                     tour.image
                 }" class="h-[300px] md:h-[260px] lg:h-[230px] w-full rounded-t-xl p-1 bg-contain"/>
-                <div id="favorite-${tour.id}" class="absolute top-5 left-5">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 text-white hidden hide">
+
+                <button id="addFavorite-${
+                    tour.id
+                }" class="btn-favorite"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+              </svg>
+              </button>
+                <button id="removeFavorite-${
+                    tour.id
+                }" class="btn-favorite hidden"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
                 <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
               </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-white show">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-</svg>
+              </button>
 
-                </div>
                 <div class="flex flex-wrap flex-col justify-between px-4 pb-3 h-[200px] md:h-[235px] lg:h-[265px]">
                     <div class="font-bold text-xl text-gray-600 uppercase lg:h-1/4 lg:mb-7" >${
                         tour.hotelName
@@ -86,28 +92,26 @@ function render(tours) {
     })
 
     tours.forEach((tour) => {
-        document
-            .getElementById(`favorite-${tour.id}`)
-            .addEventListener("click", () => {
-                favTour(tour.id)
+        const removeFromFavorite = document.getElementById(`removeFavorite-${tour.id}`)
+        const addToFavorite = document.getElementById(`addFavorite-${tour.id}`)
+        addToFavorite.addEventListener("click", () => {  
+                addToFavorite.style.display = "none"
+                removeFromFavorite.style.display = "flex"
+
+                favoriteTours.push(tour)
+                console.log(favoriteTours)
             })
-    })
+
+            removeFromFavorite.addEventListener("click", () => {              
+                removeFromFavorite.style.display = "none"
+                addToFavorite.style.display = "flex"
+                favoriteTours.splice(tour, 1)
+                console.log(favoriteTours)
+            })
+    })   
 }
 
 /*открываем модальное окно*/
-let currentId
-
-function favTour(id) {
-    currentId = id
-    console.log(currentId)
-    let tour = allTours.find((u) => {
-        return u.id === id
-    })
-
-    document.querySelector(".show").classList.toggle("hidden")
-    document.querySelector(".hide").classList.toggle("hidden")
-}
-
 function bookTour(id) {
     currentId = id
     document.getElementById("openModal").style.display = "flex"
@@ -154,6 +158,15 @@ closeModalBtn.addEventListener("click", closeModal)
 async function init() {
     const tours = await loadTours()
     render(tours)
+
+    let favoriteArray = document.getElementById("favorite-tours")
+    favoriteArray.addEventListener("click", () => {
+        if(favoriteTours.lenght === 0) {
+            alert("Вы не добавили ни одного тура в избранное")
+        } else {
+            render(favoriteTours)
+        }
+    })
 }
 
 init()
