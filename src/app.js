@@ -5,6 +5,7 @@ import { differenceInDays } from "date-fns"
 let allTours = []
 let favoriteTours = []
 let currentId
+
 async function loadTours() {
     const response = await fetch(
         "https://www.bit-by-bit.ru/api/student-projects/tours"
@@ -13,8 +14,6 @@ async function loadTours() {
     allTours = tours
     return tours
 }
-
-/*allTours.filter(t => t.country === "Мальдивы")*/
 
 function render(tours) {
     let container = document.getElementById("container")
@@ -92,23 +91,41 @@ function render(tours) {
     })
 
     tours.forEach((tour) => {
-        const removeFromFavorite = document.getElementById(`removeFavorite-${tour.id}`)
-        const addToFavorite = document.getElementById(`addFavorite-${tour.id}`)
-        addToFavorite.addEventListener("click", () => {  
-                addToFavorite.style.display = "none"
-                removeFromFavorite.style.display = "flex"
+        let removeFromFavorite = document.getElementById(
+            `removeFavorite-${tour.id}`
+        )
+        let addToFavorite = document.getElementById(`addFavorite-${tour.id}`)
+        addToFavorite.addEventListener("click", () => {
+            addToFavorite.style.display = "none"
+            removeFromFavorite.style.display = "flex"
 
-                favoriteTours.push(tour)
-                console.log(favoriteTours)
-            })
+            favoriteTours.push(tour)
+            console.log(favoriteTours)
+        })
 
-            removeFromFavorite.addEventListener("click", () => {              
-                removeFromFavorite.style.display = "none"
-                addToFavorite.style.display = "flex"
-                favoriteTours.splice(tour, 1)
-                console.log(favoriteTours)
-            })
-    })   
+        removeFromFavorite.addEventListener("click", () => {
+            removeFromFavorite.style.display = "none"
+            addToFavorite.style.display = "flex"
+            deleteFavorite(tour.id)
+            console.log(favoriteTours)
+        })
+    })
+
+    favoriteTours.forEach((tour) => {
+        let removeFromFavorite = document.getElementById(
+            `removeFavorite-${tour.id}`
+        )
+        removeFromFavorite.style.display = "flex"
+    })
+}
+
+function deleteFavorite(id) {
+    let favoriteTour = favoriteTours.find((f) => {
+        return f.id === id
+    })
+
+    let favIndex = favoriteTours.indexOf(favoriteTour)
+    favoriteTours.splice(favIndex, 1)
 }
 
 /*открываем модальное окно*/
@@ -161,15 +178,13 @@ async function init() {
 
     let favoriteArray = document.getElementById("favorite-tours")
     favoriteArray.addEventListener("click", () => {
-        if(favoriteTours.lenght === 0) {
+        if (favoriteTours.lenght === 0) {
             alert("Вы не добавили ни одного тура в избранное")
         } else {
             render(favoriteTours)
         }
     })
 }
-
-init()
 
 const sendRequestBtn = document.getElementById("sendRequest")
 sendRequestBtn.addEventListener("click", func)
@@ -222,3 +237,5 @@ async function func() {
         closeModal()
     }
 }
+
+init()

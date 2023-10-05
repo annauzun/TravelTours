@@ -7,7 +7,7 @@
 }
 
 .btn-favorite {
-    @apply absolute top-5 left-5 text-white bg-sky-50/50 h-14 w-14 px-2 py-2 rounded-full
+    @apply absolute top-5 left-5 text-white bg-sky-50/50 h-14 w-14 px-2 py-2 rounded-full;
 }
 
 .input {
