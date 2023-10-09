@@ -116,6 +116,10 @@ function render(tours) {
             `removeFavorite-${tour.id}`
         )
         removeFromFavorite.style.display = "flex"
+        removeFromFavorite.addEventListener("click", () => {
+            render(favoriteTours)
+        })
+        
     })
 }
 
