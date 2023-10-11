@@ -119,7 +119,6 @@ function render(tours) {
         removeFromFavorite.addEventListener("click", () => {
             render(favoriteTours)
         })
-        
     })
 }
 
@@ -130,6 +129,10 @@ function deleteFavorite(id) {
 
     let favIndex = favoriteTours.indexOf(favoriteTour)
     favoriteTours.splice(favIndex, 1)
+
+    if (favoriteTours.length === 0) {
+        document.getElementById("favorite-error").style.display = "flex"
+    }
 }
 
 /*открываем модальное окно*/
@@ -179,16 +182,12 @@ closeModalBtn.addEventListener("click", closeModal)
 async function init() {
     const tours = await loadTours()
     render(tours)
-
-    let favoriteArray = document.getElementById("favorite-tours")
-    favoriteArray.addEventListener("click", () => {
-        if (favoriteTours.lenght === 0) {
-            alert("Вы не добавили ни одного тура в избранное")
-        } else {
-            render(favoriteTours)
-        }
-    })
 }
+
+//при нажатии на кнопку избранное "прорисовываем" массив с избранными турами
+document.getElementById("favorite-tours-btn").addEventListener("click", () => {
+    render(favoriteTours)
+})
 
 const sendRequestBtn = document.getElementById("sendRequest")
 sendRequestBtn.addEventListener("click", func)
@@ -241,5 +240,10 @@ async function func() {
         closeModal()
     }
 }
+
+document.getElementById("fav-error-btn").addEventListener("click", () => {
+    init()
+    document.getElementById("favorite-error").style.display = "none"
+})
 
 init()

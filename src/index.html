@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="max-w-6xl mx-auto pt-16 pb-40 px-12 lg:px-8">
-                    <button class="btn-primary" id="favorite-tours">
+                    <button class="btn-primary" id="favorite-tours-btn">
                         Избранное
                     </button>
 
@@ -115,7 +115,7 @@
                         </p>
 
                         <div
-                            class="w-full flex justify-between bg-green-50/50 rounded-md p-3"
+                            class="w-full flex flex-wrap justify-between bg-green-50/50 rounded-md p-3"
                         >
                             <div class="select-field">
                                 <label class="label" for="country"
@@ -166,8 +166,17 @@
                                     <div class="text-sm">600 000 ₽</div>
                                 </div>
                             </div>
-                            <button class="btn-primary w-1/5">
-                                Подобрать тур
+                            <button class="btn-primary">Подобрать тур</button>
+                        </div>
+                        <div
+                            class="w-1/2 bg-slate-100 rounded-lg mx-auto my-6 text-center text-2xl p-6 flex-col hidden"
+                            id="favorite-error"
+                        >
+                            <p class="mb-8">
+                                У вас еще нет ни одного тура в избранном.
+                            </p>
+                            <button class="btn-primary" id="fav-error-btn">
+                                Вернуться к выбору туров
                             </button>
                         </div>
                     </div>
