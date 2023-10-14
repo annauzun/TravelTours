@@ -179,9 +179,77 @@ function closeModal() {
 const closeModalBtn = document.getElementById("closeModal")
 closeModalBtn.addEventListener("click", closeModal)
 
+//фильтрация туров
+document.getElementById("countriesListBtn").addEventListener("click", () => {
+    document.getElementById("countriesList").style.display = "flex"
+})
+
+document.getElementById("rateListBtn").addEventListener("click", () => {
+    document.getElementById("rateList").style.display = "flex"
+})
+
+document.getElementById("priceListBtn").addEventListener("click", () => {
+    document.getElementById("priceList").style.display = "flex"
+})
+
+function filterByCountry(tours, country) {
+    if (country) {
+        const filterByCountryTours = tours.filter((tour) => {
+            return tour.country.toLowerCase() === country
+        })
+        render(filterByCountryTours)
+    } else {
+        render(tours)
+    }
+}
+
+function filterByRate(tours, rating) {
+    if (rating) {
+        const filterByRateTours = tours.filter((tour) => {
+            return tour.rating > rating
+        })
+        render(filterByRateTours)
+    } else {
+        render(tours)
+    }
+}
+
+function filterByPrice(tours, price) {
+    const minPrice = document.getElementById("minPrice").value
+    const maxPrice = document.getElementById("maxPrice").value
+
+    console.log(minPrice)
+    console.log(maxPrice)
+    if (price) {
+        const filterByPriceTours = tours.filter((tour) => {
+            return tour.price > minPrice && tour.price < maxPrice
+        })
+        render(filterByPriceTours)
+    } else {
+        render(tours)
+    }
+   
+}
+
 async function init() {
     const tours = await loadTours()
     render(tours)
+
+    document.getElementById("egypt").addEventListener("click", () => filterByCountry(tours, "египет"))
+    document.getElementById("indonesia").addEventListener("click", () => filterByCountry(tours, "индонезия"))
+    document.getElementById("cyprus").addEventListener("click", () => filterByCountry(tours, "кипр"))
+    document.getElementById("maldives").addEventListener("click", () => filterByCountry(tours, "мальдивы"))
+    document.getElementById("mexico").addEventListener("click", () => filterByCountry(tours, "мексика"))
+    document.getElementById("thailand").addEventListener("click", () => filterByCountry(tours, "тайланд"))
+    document.getElementById("tanzania").addEventListener("click", () => filterByCountry(tours, "танзания"))
+    document.getElementById("allT").addEventListener("click", () => filterByCountry(tours))
+
+    document.getElementById("seven").addEventListener("click", () => filterByRate(tours, "7"))
+    document.getElementById("eight").addEventListener("click", () => filterByRate(tours, "8"))
+    document.getElementById("nine").addEventListener("click", () => filterByRate(tours, "9"))
+    document.getElementById("allR").addEventListener("click", () => filterByRate(tours))
+
+    //document.getElementById("minPrice").addEventListener("click", () => filterByPrice(tours, minPrice))
 }
 
 //при нажатии на кнопку избранное "прорисовываем" массив с избранными турами

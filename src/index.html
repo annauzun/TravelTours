@@ -117,53 +117,159 @@
                         <div
                             class="w-full flex flex-wrap justify-between bg-green-50/50 rounded-md p-3"
                         >
-                            <div class="select-field">
-                                <label class="label" for="country"
-                                    >Страна:</label
+                            <div>
+                                <label
+                                    id="listbox-label"
+                                    class="block text-sm font-medium leading-6 text-gray-900"
+                                    >Assigned to</label
                                 >
+                                <div class="relative mt-2">
+                                    <button
+                                        id="countriesListBtn"
+                                        class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                                    >
+                                        <span class="flex items-center">
+                                            <span class="ml-3">Все страны</span>
+                                        </span>
+                                        <span
+                                            class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2"
+                                        >
+                                            <svg
+                                                class="h-5 w-5 text-gray-400"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </button>
 
-                                <select
-                                    class="rounded-md mb-1 mx-1"
-                                    type="text"
-                                    id="selectCountry"
-                                    name="country"
-                                >
-                                    <option value="все">Все страны</option>
-                                    <option value="Тайланд">Тайланд</option>
-                                    <option value="Египет">Египет</option>
-                                    <option value="Кипр">Кипр</option>
-                                    <option value="Мальдивы">Мальдивы</option>
-                                    <option value="Индонезия">Индонезия</option>
-                                    <option value="Мексика">Мексика</option>
-                                    <option value="Танзания">Танзания</option>
-                                </select>
+                                    <ul class="ul" id="countriesList">
+                                        <li class="selectItem" id="allT">
+                                            <span>Все страны</span>
+                                        </li>
+                                        <li class="selectItem" id="egypt">
+                                            <span>Египет</span>
+                                        </li>
+                                        <li class="selectItem" id="indonesia">
+                                            <span>Индонезия</span>
+                                        </li>
+                                        <li class="selectItem" id="cyprus">
+                                            <span>Кипр</span>
+                                        </li>
+                                        <li class="selectItem" id="maldives">
+                                            <span>Мальдивы</span>
+                                        </li>
+                                        <li class="selectItem" id="mexico">
+                                            <span>Мексика</span>
+                                        </li>
+                                        <li class="selectItem" id="thailand">
+                                            <span>Тайланд</span>
+                                        </li>
+                                        <li class="selectItem" id="tanzania">
+                                            <span>Танзания</span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="select-field">
-                                <label class="label" for="duration"
-                                    >Дата начала тура:</label
+                            <div>
+                                <label
+                                    id="listbox-label"
+                                    class="block text-sm font-medium leading-6 text-gray-900"
+                                    >Assigned to</label
                                 >
-                                <input
-                                    id="selectDate"
-                                    type="date"
-                                    class="rounded-md mb-1 mx-1 px-1"
-                                />
+                                <div class="relative mt-2">
+                                    <button
+                                        id="rateListBtn"
+                                        class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                                    >
+                                        <span class="flex items-center">
+                                            <span class="ml-3">Рейтинг</span>
+                                        </span>
+                                        <span
+                                            class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2"
+                                        >
+                                            <svg
+                                                class="h-5 w-5 text-gray-400"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </button>
+
+                                    <ul class="ul" id="rateList">
+                                        <li class="selectItem" id="allR">
+                                            <span>Рейтинг</span>
+                                        </li>
+                                        <li class="selectItem" id="seven">
+                                            <span>7</span>
+                                        </li>
+                                        <li class="selectItem" id="eight">
+                                            <span>8</span>
+                                        </li>
+                                        <li class="selectItem" id="nine">
+                                            <span>9</span>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="select-field">
-                                <label class="label" for="price"
-                                    >Стоимость:</label
+                            <div>
+                                <label
+                                    id="listbox-label"
+                                    class="block text-sm font-medium leading-6 text-gray-900"
+                                    >Assigned to</label
                                 >
-                                <div class="flex justify-between px-1">
-                                    <div class="text-sm">0 ₽</div>
-                                    <input
-                                        id="selectPrice"
-                                        type="range"
-                                        min="0"
-                                        max="600000"
-                                        step="1000"
-                                        value="20000"
-                                        class="w-1/2"
-                                    />
-                                    <div class="text-sm">600 000 ₽</div>
+                                <div class="relative mt-2">
+                                    <button
+                                        id="priceListBtn"
+                                        class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                                    >
+                                        <span class="flex items-center">
+                                            <span class="ml-3">Стоимость</span>
+                                        </span>
+                                        <span
+                                            class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2"
+                                        >
+                                            <svg
+                                                class="h-5 w-5 text-gray-400"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </button>
+
+                                    <div class="ul" id="priceList">
+                                        
+                                            <span class="selectItem" id="allP">Стоимость</span>
+                                        
+                                        
+                                            <input id="minPrice" class="input" type="number"/>
+                                        
+                                        
+                                            <input id="maxPrice" class="input"/>
+                                        
+                                        
+                                    </div>
                                 </div>
                             </div>
                             <button class="btn-primary">Подобрать тур</button>

@@ -10,12 +10,20 @@
     @apply absolute top-5 left-5 text-white bg-sky-50/50 h-14 w-14 px-2 py-2 rounded-full;
 }
 
+.selectItem {
+    @apply text-gray-900 relative cursor-default select-none py-2 px-4 font-normal mx-1 flex items-start truncate hover:bg-sky-300/50;
+}
+
 .input {
     @apply w-full h-8 mt-1 border border-solid border-gray-600 rounded-md pl-1;
 }
 
 .select-field {
     @apply w-1/4 flex flex-col rounded-md bg-sky-300/25 mr-3;
+}
+
+.ul {
+    @apply flex-col hidden absolute z-20 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
 }
 
 .label {
