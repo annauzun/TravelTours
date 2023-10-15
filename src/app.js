@@ -192,18 +192,6 @@ document.getElementById("priceListBtn").addEventListener("click", () => {
     document.getElementById("priceList").style.display = "flex"
 })
 
-function closeCountriesList() {
-    document.getElementById("countriesList").style.display = "none"
-}
-
-function closeRateList() {
-    document.getElementById("rateList").style.display = "none"
-}
-
-function closePriceList() {
-    document.getElementById("priceList").style.display = "none"
-}
-
 function filterByCountry(tours, country) {
     if (country) {
         const filterByCountryTours = tours.filter((tour) => {
@@ -230,54 +218,83 @@ function filterByPrice(tours, price) {
     let minPrice = document.getElementById("minPrice").value
     let maxPrice = document.getElementById("maxPrice").value
 
-    console.log(minPrice)
-    console.log(maxPrice)
     if (price) {
         const filterByPriceTours = tours.filter((tour) => {
-            return tour.price > minPrice &&  tour.price < maxPrice  
+            return tour.price > minPrice && tour.price < maxPrice
         })
         render(filterByPriceTours)
-        console.log(filterByPriceTours)
-    } 
-   
-        
-    
-   
+    } else {
+        render(tours)
+    }
 }
 
 async function init() {
     const tours = await loadTours()
     render(tours)
 
-    document.getElementById("egypt").addEventListener("click", () => filterByCountry(tours, "египет"))
-    document.getElementById("indonesia").addEventListener("click", () => filterByCountry(tours, "индонезия"))
-    document.getElementById("cyprus").addEventListener("click", () => filterByCountry(tours, "кипр"))
-    document.getElementById("maldives").addEventListener("click", () => filterByCountry(tours, "мальдивы"))
-    document.getElementById("mexico").addEventListener("click", () => filterByCountry(tours, "мексика"))
-    document.getElementById("thailand").addEventListener("click", () => filterByCountry(tours, "тайланд"))
-    document.getElementById("tanzania").addEventListener("click", () => filterByCountry(tours, "танзания"))
-    document.getElementById("allT").addEventListener("click", () => filterByCountry(tours))
+    document
+        .getElementById("egypt")
+        .addEventListener("click", () => filterByCountry(tours, "египет"))
+    document
+        .getElementById("indonesia")
+        .addEventListener("click", () => filterByCountry(tours, "индонезия"))
+    document
+        .getElementById("cyprus")
+        .addEventListener("click", () => filterByCountry(tours, "кипр"))
+    document
+        .getElementById("maldives")
+        .addEventListener("click", () => filterByCountry(tours, "мальдивы"))
+    document
+        .getElementById("mexico")
+        .addEventListener("click", () => filterByCountry(tours, "мексика"))
+    document
+        .getElementById("thailand")
+        .addEventListener("click", () => filterByCountry(tours, "тайланд"))
+    document
+        .getElementById("tanzania")
+        .addEventListener("click", () => filterByCountry(tours, "танзания"))
+    document
+        .getElementById("allT")
+        .addEventListener("click", () => filterByCountry(tours))
 
     let listC = document.getElementsByTagName("li")
-    for(let i=0; i<listC.length; i++) {
-        listC[i].addEventListener("click", closeCountriesList)
+    for (let i = 0; i < listC.length; i++) {
+        listC[i].addEventListener("click", () => {
+            document.getElementById("countriesList").style.display = "none"
+        })
     }
 
-    document.getElementById("seven").addEventListener("click", () => filterByRate(tours, "7"))
-    document.getElementById("eight").addEventListener("click", () => filterByRate(tours, "8"))
-    document.getElementById("nine").addEventListener("click", () => filterByRate(tours, "9"))
-    document.getElementById("allR").addEventListener("click", () => filterByRate(tours))
+    document
+        .getElementById("seven")
+        .addEventListener("click", () => filterByRate(tours, "7"))
+    document
+        .getElementById("eight")
+        .addEventListener("click", () => filterByRate(tours, "8"))
+    document
+        .getElementById("nine")
+        .addEventListener("click", () => filterByRate(tours, "9"))
+    document
+        .getElementById("allR")
+        .addEventListener("click", () => filterByRate(tours))
 
     let listR = document.getElementsByTagName("li")
-    for(let i=0; i<listR.length; i++) {
-        listR[i].addEventListener("click", closeRateList)
+    for (let i = 0; i < listR.length; i++) {
+        listR[i].addEventListener("click", () => {
+            document.getElementById("rateList").style.display = "none"
+        })
     }
-    
-    document.getElementById("priceBtn").addEventListener("click", () => filterByPrice(tours, minPrice, maxPrice))
-    
 
+    document
+        .getElementById("priceBtn")
+        .addEventListener("click", () =>
+            filterByPrice(tours, minPrice, maxPrice)
+        )
 
-    document.getElementById("priceBtn").addEventListener("click", closePriceList)
+    document.getElementById("priceBtn").addEventListener("click", () => {
+        document.getElementById("priceList").style.display = "none"
+        document.getElementById("minPrice").value = ""
+        document.getElementById("maxPrice").value = ""
+    })
 }
 
 //при нажатии на кнопку избранное "прорисовываем" массив с избранными турами
