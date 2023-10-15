@@ -117,11 +117,11 @@
                         <div
                             class="w-full flex flex-wrap justify-between bg-green-50/50 rounded-md p-3"
                         >
-                            <div>
+                            <div class="w-1/4">
                                 <label
                                     id="listbox-label"
                                     class="block text-sm font-medium leading-6 text-gray-900"
-                                    >Assigned to</label
+                                    >Страна</label
                                 >
                                 <div class="relative mt-2">
                                     <button
@@ -177,11 +177,11 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div>
+                            <div class="w-1/4">
                                 <label
                                     id="listbox-label"
                                     class="block text-sm font-medium leading-6 text-gray-900"
-                                    >Assigned to</label
+                                    >Рейтинг</label
                                 >
                                 <div class="relative mt-2">
                                     <button
@@ -211,7 +211,7 @@
 
                                     <ul class="ul" id="rateList">
                                         <li class="selectItem" id="allR">
-                                            <span>Рейтинг</span>
+                                            <span>Все</span>
                                         </li>
                                         <li class="selectItem" id="seven">
                                             <span>7</span>
@@ -226,11 +226,11 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div>
+                            <div class="w-1/4">
                                 <label
                                     id="listbox-label"
                                     class="block text-sm font-medium leading-6 text-gray-900"
-                                    >Assigned to</label
+                                    >Стоимость (₽)</label
                                 >
                                 <div class="relative mt-2">
                                     <button
@@ -258,15 +258,16 @@
                                         </span>
                                     </button>
 
-                                    <div class="ul" id="priceList">
+                                    <div class="ul items-center justify-center" id="priceList">
                                         
-                                            <span class="selectItem" id="allP">Стоимость</span>
-                                        
-                                        
-                                            <input id="minPrice" class="input" type="number"/>
+                                            
                                         
                                         
-                                            <input id="maxPrice" class="input"/>
+                                            <input id="minPrice" class="input" placeholder="Минимальная цена" type="number"/>
+                                        
+                                        
+                                            <input id="maxPrice" class="input" placeholder="Максимальная цена" type="number"/>
+                                            <button id="priceBtn" class="my-2">Выбрать</button>
                                         
                                         
                                     </div>

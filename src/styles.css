@@ -15,7 +15,7 @@
 }
 
 .input {
-    @apply w-full h-8 mt-1 border border-solid border-gray-600 rounded-md pl-1;
+    @apply w-4/5 h-8 mt-4 border border-solid border-gray-600 rounded-md pl-1 text-sm;
 }
 
 .select-field {
