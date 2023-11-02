@@ -30,26 +30,26 @@
 
                             <div>
                                 <p class="text-lg mt-2">Страна тура</p>
-                                <input class="input" id="country" type="text" />
+                                <input class="input" id="country" readonly />
                             </div>
                             <div>
                                 <p class="text-lg mt-2">Город тура</p>
-                                <input class="input" id="city" />
+                                <input class="input" id="city" readonly/>
                             </div>
                             <div>
                                 <p class="text-lg mt-2">Название отеля</p>
-                                <input class="input" id="hotelName" />
+                                <input class="input" id="hotelName" readonly/>
                             </div>
 
                             <div>
                                 <p class="text-lg mt-2">Дата начала поездки</p>
-                                <input class="input" id="startTime" />
+                                <input class="input" id="startTime" readonly/>
                             </div>
                             <div>
                                 <p class="text-lg mt-2">
                                     Дата окончания поездки
                                 </p>
-                                <input class="input" id="endTime" />
+                                <input class="input" id="endTime" readonly/>
                             </div>
                         </div>
                         <div class="bg-amber-100 w-3/5 rounded-r-xl p-6">
@@ -195,22 +195,27 @@
                                             class="ul items-center justify-center"
                                             id="priceList"
                                         >
-                                            <input
+                                            <p class="w-4/5 text-left pl-1 mb-1 mt-4">Минимальная цена</p>
+                                        <input
                                                 id="minPrice"
                                                 class="input"
-                                                placeholder="Минимальная цена"
+                                                placeholder="10000"
                                                 type="number"
                                                 step="10000"
+                                                min="10000"     
+                                                max="700000"                                          
                                             />
-
+                                            <p class="w-4/5 text-left pl-1 mb-1">Максимальная цена</p>
                                             <input
                                                 id="maxPrice"
                                                 class="input"
-                                                placeholder="Максимальная цена"
+                                                placeholder="700000"
                                                 type="number"
                                                 step="10000"
+                                                max="700000"
+                                                min="10000"
                                             />
-                                            <button id="priceBtn" class="my-2">
+                                            <button id="priceBtn" class="my-2 bg-slate-200 rounded-md px-3 py-1 ">
                                                 Выбрать
                                             </button>
                                         </div>
@@ -228,6 +233,31 @@
                                     Вернуться к выбору туров
                                 </button>
                             </div>
+                            
+                            <div
+                                class="w-1/2 bg-slate-100 rounded-lg mx-auto my-6 text-center text-2xl p-6 flex-col hidden"
+                                id="success"
+                            >
+                                <p class="mb-8">
+                                    Ваш запрос успешно отправлен!
+                                </p>
+                                <button class="btn-primary" id="success-btn">
+                                    Закрыть
+                                </button>
+                            </div>
+
+                            <div
+                                class="w-1/2 bg-slate-100 rounded-lg mx-auto my-6 text-center text-2xl p-6 flex-col hidden"
+                                id="fail"
+                            >
+                                <p class="mb-8">
+                                    Ошибка
+                                </p>
+                                <button class="btn-primary" id="fail-btn">
+                                    Закрыть
+                                </button>
+                            </div>
+                            
                         </div>
                     </div>
 

@@ -174,6 +174,7 @@ function clearForm() {
 function closeModal() {
     document.getElementById("openModal").style.display = "none"
     clearForm()
+    document.getElementById("request-error").style.display = "none"
 }
 
 const closeModalBtn = document.getElementById("closeModal")
@@ -324,8 +325,7 @@ async function func() {
     if (
         params.customerName === "" ||
         params.phone === "" ||
-        params.email === "" ||
-        params.description === ""
+        params.email === ""
     ) {
         document.getElementById("request-error").style.display = "flex"
     } else {
@@ -344,12 +344,12 @@ async function func() {
     })
 
     if (response.ok) {
-        alert("Успешно")
+        document.getElementById("success").style.display = "flex"
         closeModal()
         let result = await response.json()
         return result
     } else {
-        alert("Ошибка")
+        document.getElementById("fail").style.display = "flex"
         closeModal()
     }
 }
@@ -357,6 +357,16 @@ async function func() {
 document.getElementById("fav-error-btn").addEventListener("click", () => {
     init()
     document.getElementById("favorite-error").style.display = "none"
+})
+
+document.getElementById("success-btn").addEventListener("click", () => {
+    init()
+    document.getElementById("success").style.display = "none"
+})
+
+document.getElementById("fail-btn").addEventListener("click", () => {
+    init()
+    document.getElementById("fail").style.display = "none"
 })
 
 init()
