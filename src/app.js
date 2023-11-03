@@ -144,6 +144,33 @@ function bookTour(id) {
         return u.id === id
     })
 
+    let modalContainer = document.getElementById("modalContainer")
+
+    modalContainer.innerHTML = ""
+    modalContainer.innerHTML += `    
+        <p class="text-2xl text-center">Данные выбранного тура</p>
+        <img src="${tour.image}" class="w-full h-40 rounded-xl my-1"/>
+        <div>
+            <p class="text-lg">Страна тура</p>
+            <input class="input" id="country" readonly />
+        </div>
+        <div>
+            <p class="text-lg">Город тура</p>
+            <input class="input" id="city" readonly/>
+        </div>
+        <div>
+            <p class="text-lg">Название отеля</p>
+            <input class="input" id="hotelName" readonly/>
+        </div>
+        <div>
+            <p class="text-lg">Дата начала поездки</p>
+            <input class="input" id="startTime" readonly/>
+        </div>
+        <div>
+            <p class="text-lg">Дата окончания поездки</p>
+            <input class="input" id="endTime" readonly/>
+        </div>  
+    `
     getValue(tour)
 }
 
@@ -300,7 +327,7 @@ async function init() {
 
 //при нажатии на кнопку избранное "прорисовываем" массив с избранными турами
 document.getElementById("favorite-tours-btn").addEventListener("click", () => {
-    render(favoriteTours)
+        render(favoriteTours)   
 })
 
 const sendRequestBtn = document.getElementById("sendRequest")
@@ -322,35 +349,25 @@ async function func() {
     }
     console.log(params)
 
-    if (
-        params.customerName === "" ||
-        params.phone === "" ||
-        params.email === ""
-    ) {
+    if (params.customerName && params.phone && params.email) {
+        console.log(currentId)
+        const url = `https://www.bit-by-bit.ru/api/student-projects/tours/${currentId}`
+        const response = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify(params),
+        })
+
+        if (response.ok) {
+            document.getElementById("success").style.display = "flex"
+            closeModal()
+            let result = await response.json()
+            return result
+        } else {
+            document.getElementById("fail").style.display = "flex"
+            closeModal()
+        }
+    } else {
         document.getElementById("request-error").style.display = "flex"
-    } else {
-        document.getElementById("request-error").style.display = "none"
-    }
-
-    console.log(currentId)
-    const url = `https://www.bit-by-bit.ru/api/student-projects/tours/${currentId}`
-    let response = await fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify(params),
-    })
-
-    if (response.ok) {
-        document.getElementById("success").style.display = "flex"
-        closeModal()
-        let result = await response.json()
-        return result
-    } else {
-        document.getElementById("fail").style.display = "flex"
-        closeModal()
     }
 }
 
