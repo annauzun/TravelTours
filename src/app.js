@@ -1,6 +1,7 @@
 import { format } from "date-fns"
 import { id, ru } from "date-fns/locale"
 import { differenceInDays } from "date-fns"
+import swal from "sweetalert"
 
 let allTours = []
 let favoriteTours = []
@@ -131,7 +132,13 @@ function deleteFavorite(id) {
     favoriteTours.splice(favIndex, 1)
 
     if (favoriteTours.length === 0) {
-        document.getElementById("favorite-error").style.display = "flex"
+        swal({
+            title: "У вас нет ни одного тура в избранном.",
+            text: "Вернуться к выбору туров?",
+            icon: "info",
+            buttons: "Да",
+        })
+        init()
     }
 }
 
@@ -327,25 +334,30 @@ async function init() {
 
 //при нажатии на кнопку избранное "прорисовываем" массив с избранными турами
 document.getElementById("favorite-tours-btn").addEventListener("click", () => {
-        render(favoriteTours)   
+    render(favoriteTours)
+    if (favoriteTours.length === 0) {
+        swal({
+            title: "У вас нет ни одного тура в избранном.",
+            text: "Вернуться к выбору туров?",
+            icon: "info",
+            buttons: "Да",
+        })
+        init()
+    }
 })
 
 const sendRequestBtn = document.getElementById("sendRequest")
 sendRequestBtn.addEventListener("click", func)
 
 async function func() {
-    const customerCountryValue = document.getElementById("country").value
-    const customerNameValue = document.getElementById("customerName").value
-    const phoneValue = document.getElementById("phone").value
-    const emailValue = document.getElementById("email").value
-    const descriptionValue = document.getElementById("description").value
-
     const params = {
-        customerCountry: customerCountryValue,
-        customerName: customerNameValue,
-        phone: phoneValue,
-        email: emailValue,
-        description: descriptionValue,
+        customerCountry: document.getElementById("country").value,
+        customerCity: document.getElementById("city").value,
+        customerHotel: document.getElementById("hotelName").value,
+        customerName: document.getElementById("customerName").value,
+        phone: document.getElementById("phone").value,
+        email: document.getElementById("email").value,
+        description: document.getElementById("description").value,
     }
     console.log(params)
 
@@ -358,32 +370,27 @@ async function func() {
         })
 
         if (response.ok) {
-            document.getElementById("success").style.display = "flex"
+            swal({
+                title: "Спасибо!",
+                text: "Ваш запрос успешно отправлен!",
+                icon: "success",
+                buttons: "Закрыть",
+            })
             closeModal()
             let result = await response.json()
             return result
         } else {
-            document.getElementById("fail").style.display = "flex"
+            swal({
+                title: "Ошибка",
+                text: "Ваш запрос не может быть отправлен",
+                icon: "error",
+                buttons: "Закрыть",
+            })
             closeModal()
         }
     } else {
         document.getElementById("request-error").style.display = "flex"
     }
 }
-
-document.getElementById("fav-error-btn").addEventListener("click", () => {
-    init()
-    document.getElementById("favorite-error").style.display = "none"
-})
-
-document.getElementById("success-btn").addEventListener("click", () => {
-    init()
-    document.getElementById("success").style.display = "none"
-})
-
-document.getElementById("fail-btn").addEventListener("click", () => {
-    init()
-    document.getElementById("fail").style.display = "none"
-})
 
 init()
