@@ -230,7 +230,7 @@ document.getElementById("priceListBtn").addEventListener("click", () => {
 function filterByCountry(tours, country) {
     if (country) {
         const filterByCountryTours = tours.filter((tour) => {
-            return tour.country.toLowerCase() === country
+            return tour.country === country
         })
         render(filterByCountryTours)
     } else {
@@ -267,7 +267,7 @@ async function init() {
     const tours = await loadTours()
     render(tours)
 
-    document
+    /*document
         .getElementById("egypt")
         .addEventListener("click", () => filterByCountry(tours, "египет"))
     document
@@ -290,7 +290,19 @@ async function init() {
         .addEventListener("click", () => filterByCountry(tours, "танзания"))
     document
         .getElementById("allT")
-        .addEventListener("click", () => filterByCountry(tours))
+        .addEventListener("click", () => filterByCountry(tours))*/
+
+    const countryFilters = Array.from(document.getElementsByClassName('country-filter'))
+    countryFilters.forEach(countryFilter => {
+        countryFilter.addEventListener("click", () => {
+            const country = countryFilter.dataset.country
+            if (country === "all") {
+                filterByCountry(tours)
+            } else {
+                filterByCountry(tours, country)
+            }
+        })
+    })
 
     let listC = document.getElementsByTagName("li")
     for (let i = 0; i < listC.length; i++) {
@@ -299,7 +311,7 @@ async function init() {
         })
     }
 
-    document
+    /*document
         .getElementById("seven")
         .addEventListener("click", () => filterByRate(tours, "7"))
     document
@@ -310,7 +322,19 @@ async function init() {
         .addEventListener("click", () => filterByRate(tours, "9"))
     document
         .getElementById("allR")
-        .addEventListener("click", () => filterByRate(tours))
+        .addEventListener("click", () => filterByRate(tours))*/
+
+    const ratingFilters = Array.from(document.getElementsByClassName('rating-filter'))
+    ratingFilters.forEach(ratingFilter => {
+        ratingFilter.addEventListener("click", () => {
+            const rating = ratingFilter.dataset.rating
+            if (rating === "all") {
+                filterByRate(tours)
+            } else {
+                filterByRate(tours, rating)
+            }
+        })
+    })
 
     let listR = document.getElementsByTagName("li")
     for (let i = 0; i < listR.length; i++) {

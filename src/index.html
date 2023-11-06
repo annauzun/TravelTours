@@ -44,11 +44,11 @@
                             </div>
                             <div>
                                 <p class="text-lg mt-2">Телефон для связи</p>
-                                <input class="input" id="phone" />
+                                <input class="input" id="phone" type="phone" />
                             </div>
                             <div>
                                 <p class="text-lg mt-2">Email</p>
-                                <input class="input" id="email" />
+                                <input class="input" id="email" type="email" />
                             </div>
                             <div>
                                 <p class="text-lg mt-2">
@@ -63,7 +63,7 @@
 
                             <br />
 
-                            <div class="flex gap-4">
+                            <div class="flex gap-4 justify-center">
                                 <button id="sendRequest" class="btn-primary">
                                     Отправить
                                 </button>
@@ -76,9 +76,11 @@
                 </div>
 
                 <div class="max-w-6xl mx-auto pt-16 pb-40 px-12 lg:px-8">
-                    <button class="btn-primary" id="favorite-tours-btn">
-                        Избранное
-                    </button>
+                    <div class="w-full flex justify-end pr-3">
+                        <button class="btn-primary" id="favorite-tours-btn">
+                            Избранное
+                        </button>
+                    </div>
 
                     <div class="text-center mt-6">
                         <h1 class="text-4xl font-bold text-gray-800">
@@ -105,28 +107,28 @@
                                     </button>
 
                                     <ul class="ul" id="countriesList">
-                                        <li class="selectItem" id="allT">
+                                        <li class="selectItem country-filter" data-country="all">
                                             <span>Все страны</span>
                                         </li>
-                                        <li class="selectItem" id="egypt">
+                                        <li class="selectItem country-filter" data-country="Египет">
                                             <span>Египет</span>
                                         </li>
-                                        <li class="selectItem" id="indonesia">
+                                        <li class="selectItem country-filter" data-country="Индонезия">
                                             <span>Индонезия</span>
                                         </li>
-                                        <li class="selectItem" id="cyprus">
+                                        <li class="selectItem country-filter" data-country="Кипр">
                                             <span>Кипр</span>
                                         </li>
-                                        <li class="selectItem" id="maldives">
+                                        <li class="selectItem country-filter" data-country="Мальдивы">
                                             <span>Мальдивы</span>
                                         </li>
-                                        <li class="selectItem" id="mexico">
+                                        <li class="selectItem country-filter" data-country="Мексика">
                                             <span>Мексика</span>
                                         </li>
-                                        <li class="selectItem" id="thailand">
+                                        <li class="selectItem country-filter" data-country="Тайланд">
                                             <span>Тайланд</span>
                                         </li>
-                                        <li class="selectItem" id="tanzania">
+                                        <li class="selectItem country-filter" data-country="Танзания">
                                             <span>Танзания</span>
                                         </li>
                                     </ul>
@@ -138,17 +140,17 @@
                                     </button>
 
                                     <ul class="ul" id="rateList">
-                                        <li class="selectItem" id="allR">
+                                        <li class="selectItem rating-filter" data-rating="all">
                                             <span>Все</span>
                                         </li>
-                                        <li class="selectItem" id="seven">
-                                            <span>7</span>
+                                        <li class="selectItem rating-filter" data-rating="7">
+                                            <span>от 7</span>
                                         </li>
-                                        <li class="selectItem" id="eight">
-                                            <span>8</span>
+                                        <li class="selectItem rating-filter" data-rating="8">
+                                            <span>от 8</span>
                                         </li>
-                                        <li class="selectItem" id="nine">
-                                            <span>9</span>
+                                        <li class="selectItem rating-filter" data-rating="9">
+                                            <span>от 9</span>
                                         </li>
                                     </ul>
                                 </div>
